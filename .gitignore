@@ -1,0 +1,14 @@
+
+.gradle/
+
+.idea/
+
+gradle/
+
+settings.gradle
+
+*.properties
+
+gradlew
+
+*.bat
