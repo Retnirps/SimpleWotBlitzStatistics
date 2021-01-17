@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tank_info.view.*
 
-class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener {
+class MainActivity : AppCompatActivity(), NicknameDialog.INicknameListener {
     var nickname: String = ""
     var player: Player? = null
 
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener
             if (isOnline()) {
                 when (calc_session.text) {
                     "Start Calc Session" -> {
-                        tanks.removeAllViews();
-                        player = GetInfo().getPlayer(nickname)
+                        tanks.removeAllViews()
+                        player = RequestHandler().getPlayer(nickname)
                         if (player != null) {
                             currentUnixTime = System.currentTimeMillis() / 1000L
-                            tanksStatisticsBefore = GetInfo().getTanksStatistics(player!!.accountId)
+                            tanksStatisticsBefore = RequestHandler().getTanksStatistics(player!!.accountId)
                             val myToast = Toast.makeText(
                                 this,
                                 "calculation of your session statistics started",
@@ -64,12 +64,18 @@ class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener
                         }
                     }
                     "Stop Calc Session" -> {
-                        val tanksStatisticsAfter = GetInfo().getTanksStatistics(player!!.accountId)
+                        val tanksStatisticsAfter = RequestHandler().getTanksStatistics(player!!.accountId)
                         val playedAfterPointInTime = HashMap<Long, TankStatistics>()
 
                         tanksStatisticsAfter.forEach {
-                            if (it.value.lastBattleTime > currentUnixTime && it.value.battles != tanksStatisticsBefore[it.key]!!.battles) {
-                                playedAfterPointInTime[it.key] = it.value
+                            if (it.value.lastBattleTime > currentUnixTime) {
+                                if (tanksStatisticsBefore.containsKey(it.key)) {
+                                    if (tanksStatisticsBefore[it.key]!!.battles != it.value.battles) {
+                                        playedAfterPointInTime[it.key] = it.value
+                                    }
+                                } else {
+                                    playedAfterPointInTime[it.key] = it.value
+                                }
                             }
                         }
 
@@ -94,7 +100,7 @@ class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener
                                 avgDamagePerSession = damageDealtPerSession / battlesPerSession
                                 percentageOfWinsPerSession =
                                     (winsPerSession.toFloat() / battlesPerSession * 100).toInt()
-                                tank = GetInfo().getTank(it.value.tankId)
+                                tank = RequestHandler().getTank(it.value.tankId)
                             } else {
                                 damageDealtPerSession = it.value.damageDealt
                                 winsPerSession = it.value.wins
@@ -102,7 +108,7 @@ class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener
                                 avgDamagePerSession = damageDealtPerSession / battlesPerSession
                                 percentageOfWinsPerSession =
                                     (winsPerSession.toFloat() / battlesPerSession * 100).toInt()
-                                tank = GetInfo().getTank(it.value.tankId)
+                                tank = RequestHandler().getTank(it.value.tankId)
                             }
 
                             val inflater = LayoutInflater.from(this)
@@ -144,7 +150,7 @@ class MainActivity : AppCompatActivity(), SetNicknameDialog.ISetNicknameListener
     }
 
     private fun openDialog() {
-        val setNicknameDialog = SetNicknameDialog(nickname)
+        val setNicknameDialog = NicknameDialog(nickname)
         setNicknameDialog.show(supportFragmentManager, "set nickname")
     }
 

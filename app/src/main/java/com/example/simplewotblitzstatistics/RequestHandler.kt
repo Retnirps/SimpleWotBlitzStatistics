@@ -8,7 +8,7 @@ import com.github.kittinunf.result.Result
 import com.google.gson.JsonNull
 import com.google.gson.JsonParser.parseString
 
-class GetInfo {
+class RequestHandler {
     private var data = ""
 
     fun getPlayer(nickname: String): Player? {

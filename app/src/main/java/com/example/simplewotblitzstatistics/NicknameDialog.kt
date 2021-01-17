@@ -8,8 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import java.lang.ClassCastException
 
-class SetNicknameDialog(var nickname: String): DialogFragment() {
-    private var listener: ISetNicknameListener? = null
+class NicknameDialog(var nickname: String): DialogFragment() {
+    private var listener: INicknameListener? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val alertDialog = AlertDialog.Builder(requireActivity())
@@ -28,13 +28,13 @@ class SetNicknameDialog(var nickname: String): DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = context as ISetNicknameListener
+            listener = context as INicknameListener
         } catch (e: ClassCastException) {
             throw ClassCastException("${context.toString()} must implement ISetNicknameListener")
         }
     }
 
-    interface ISetNicknameListener {
+    interface INicknameListener {
         fun applyText(nickname: String)
     }
 }
