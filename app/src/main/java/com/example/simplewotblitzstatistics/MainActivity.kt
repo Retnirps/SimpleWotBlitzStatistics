@@ -5,13 +5,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.tank_info.view.*
 
 class MainActivity : AppCompatActivity(), NicknameDialog.INicknameListener {
     var nickname: String = ""
@@ -39,22 +36,23 @@ class MainActivity : AppCompatActivity(), NicknameDialog.INicknameListener {
                         val state = dataController.getStartState()
 
                         if (state) {
-                            LayoutManager().makeToast("calculation of your session statistics started", this)
+                            LayoutManager().getToast("calculation of your session statistics started", this)
                             calc_session.text = "Stop Calc Session"
                             calc_session.setIconResource(android.R.drawable.ic_media_pause)
                         } else {
-                            LayoutManager().makeToast("no player with this nickname", this)
+                            LayoutManager().getToast("no player with this nickname", this)
                         }
                     }
                     "Stop Calc Session" -> {
                         val tanksStatisticsData = dataController.stopSession()
 
                         tanksStatisticsData.forEach {
-                            val inflater = LayoutInflater.from(this)
-                            val view = inflater.inflate(R.layout.tank_info, tanks, false)
-                            view.tank_title.text = it.first
-                            view.tank_avg.text = it.second
-                            Picasso.get().load(it.third).into(view.tank_image)
+                            val view = LayoutManager().getTankStatisticsView(
+                                tankTitle = it.first,
+                                tankAvg = it.second,
+                                tankImageUrl = it.third,
+                                layout = tanks,
+                                context = this)
                             tanks.addView(view)
                         }
 
@@ -63,7 +61,7 @@ class MainActivity : AppCompatActivity(), NicknameDialog.INicknameListener {
                     }
                 }
             } else {
-                LayoutManager().makeToast("no internet connection", this)
+                LayoutManager().getToast("no internet connection", this)
             }
         }
     }

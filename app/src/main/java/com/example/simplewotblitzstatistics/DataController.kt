@@ -36,18 +36,26 @@ class DataController {
         val playedAfterPointInTime = HashMap<Long, TankStatistics>()
 
         tanksStatisticsAfter.forEach {
-            if (it.value.lastBattleTime > currentUnixTime) {
-                if (tanksStatisticsBefore.containsKey(it.key)) {
-                    if (tanksStatisticsBefore[it.key]!!.battles != it.value.battles) {
-                        playedAfterPointInTime[it.key] = it.value
-                    }
-                } else {
-                    playedAfterPointInTime[it.key] = it.value
-                }
+            if (isTankPlayedPerSession(it.value)) {
+                playedAfterPointInTime[it.key] = it.value
             }
         }
 
         return playedAfterPointInTime
+    }
+
+    private fun isTankPlayedPerSession(tankStatistics: TankStatistics): Boolean {
+        if (tankStatistics.lastBattleTime > currentUnixTime) {
+            if (tanksStatisticsBefore.containsKey(tankStatistics.tankId)) {
+                if (tanksStatisticsBefore[tankStatistics.tankId]!!.battles != tankStatistics.battles) {
+                    return true
+                }
+            }
+
+            return true
+        }
+
+        return false
     }
 
     private fun getTankSessionStatistics(tankStatistics: TankStatistics): Triple<String, String, String> {
