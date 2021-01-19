@@ -8,9 +8,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.simplewotblitzstatistics.interfaces.INicknameListener
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NicknameDialog.INicknameListener {
+class MainActivity : AppCompatActivity(), INicknameListener {
     private var nickname: String = ""
     private val dataController = DataController()
 

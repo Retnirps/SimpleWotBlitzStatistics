@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.simplewotblitzstatistics.interfaces.INicknameListener
 import java.lang.ClassCastException
 
 class NicknameDialog(var nickname: String): DialogFragment() {
@@ -32,9 +33,5 @@ class NicknameDialog(var nickname: String): DialogFragment() {
         } catch (e: ClassCastException) {
             throw ClassCastException("${context.toString()} must implement ISetNicknameListener")
         }
-    }
-
-    interface INicknameListener {
-        fun applyText(nickname: String)
     }
 }
