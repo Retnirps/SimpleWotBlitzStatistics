@@ -7,6 +7,7 @@ import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.simplewotblitzstatistics.interfaces.INicknameListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity(), INicknameListener {
                 tankImageUrl = it.third,
                 layout = tanks,
                 context = this)
+            view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.show_tank_info_anim))
             tanks.addView(view)
         }
 
