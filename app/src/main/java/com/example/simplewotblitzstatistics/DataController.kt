@@ -47,9 +47,7 @@ class DataController {
     private fun isTankPlayedPerSession(tankStatistics: TankStatistics): Boolean {
         if (tankStatistics.lastBattleTime > currentUnixTime) {
             if (tanksStatisticsBefore.containsKey(tankStatistics.tankId)) {
-                if (tanksStatisticsBefore[tankStatistics.tankId]!!.battles != tankStatistics.battles) {
-                    return true
-                }
+                return tanksStatisticsBefore[tankStatistics.tankId]!!.battles != tankStatistics.battles
             }
 
             return true
@@ -114,7 +112,6 @@ class DataController {
 
     fun stopSession(): ArrayList<Triple<String, String, String>> {
         getCurrentState()
-        getTanksPlayedPerSession()
         val tanksPlayedPerSession = getTanksPlayedPerSession()
         val dataToShow = ArrayList<Triple<String, String, String>>()
 
