@@ -6,7 +6,7 @@ import com.example.simplewotblitzstatistics.models.TankStatistics
 
 class DataController {
     var player: Player? = null
-    private var currentUnixTime: Long = 0
+    var currentUnixTime: Long = 0
     private var tanksStatisticsBefore = HashMap<Long, TankStatistics>()
     private var tanksStatisticsAfter = HashMap<Long, TankStatistics>()
 
