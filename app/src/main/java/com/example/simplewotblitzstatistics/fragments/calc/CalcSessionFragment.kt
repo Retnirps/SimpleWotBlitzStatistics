@@ -90,19 +90,9 @@ class CalcSessionFragment: Fragment() {
                 tankImageUrl = it.third,
                 layout = tanks,
                 context = requireContext())
-            //insertDataToDatabase(dataController.currentUnixTime, it)
             view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.show_tank_info_anim))
             tanks.addView(view)
         }
-
-//        val view = LayoutManager().getTankStatisticsView(
-//                tankTitle = "Leopard 1",
-//                tankAvg = "avg damage: 3500\nbattles played: 15\n% of wins: 80%",
-//                tankImageUrl = "http://glossary-ru-static.gcdn.co/icons/wotb/current/uploaded/vehicles/hd_thumbnail/Leopard1.png",
-//                layout = tanks,
-//                context = requireContext())
-//        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.show_tank_info_anim))
-//        tanks.addView(view)
 
         calc_session.text = "Start Calc Session"
         calc_session.setIconResource(android.R.drawable.ic_media_play)

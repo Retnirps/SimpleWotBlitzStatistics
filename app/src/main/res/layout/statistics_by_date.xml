@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/statistics_date"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingBottom="25dp"></LinearLayout>
 
 </RelativeLayout>

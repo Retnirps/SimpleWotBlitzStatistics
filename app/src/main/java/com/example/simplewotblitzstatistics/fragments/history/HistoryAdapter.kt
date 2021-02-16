@@ -32,30 +32,15 @@ class HistoryAdapter(var context: Context): RecyclerView.Adapter<MyViewHolder>()
         val date = java.util.Date(currentItem.timestampOnStart * 1000)
 
         val statisticsArrayList = deserializeObject(currentItem.statistic) as ArrayList<Triple<String, String, String>>
-        val view = LayoutManager().getTankStatisticsView(
-                tankTitle = "Leopard 1",
-                tankAvg = "avg damage: 3500\nbattles played: 15\n% of wins: 80%",
-                tankImageUrl = "http://glossary-ru-static.gcdn.co/icons/wotb/current/uploaded/vehicles/hd_thumbnail/Leopard1.png",
+        statisticsArrayList.forEach {
+            val view = LayoutManager().getTankStatisticsView(
+                tankTitle = it.first,
+                tankAvg = it.second,
+                tankImageUrl = it.third,
                 layout = holder.itemView.tanks_in_history,
                 context = context)
-        holder.itemView.tanks_in_history.addView(view)
-
-        val view2 = LayoutManager().getTankStatisticsView(
-            tankTitle = "Leopard 2",
-            tankAvg = "avg damage: 7000\nbattles played: 30\n% of wins: 160%",
-            tankImageUrl = "http://glossary-ru-static.gcdn.co/icons/wotb/current/uploaded/vehicles/hd_thumbnail/Leopard1.png",
-            layout = holder.itemView.tanks_in_history,
-            context = context)
-        holder.itemView.tanks_in_history.addView(view2)
-//        statisticsArrayList.forEach {
-//            val view = LayoutManager().getTankStatisticsView(
-//                tankTitle = it.first,
-//                tankAvg = it.second,
-//                tankImageUrl = it.third,
-//                layout = holder.itemView.tanks_in_history,
-//                context = context)
-//            holder.itemView.tanks_in_history.addView(view)
-//        }
+            holder.itemView.tanks_in_history.addView(view)
+        }
 
         holder.itemView.statistics_date.text = sdf.format(date)
     }

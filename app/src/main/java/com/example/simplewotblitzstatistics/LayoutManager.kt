@@ -28,14 +28,4 @@ class LayoutManager {
 
         return view
     }
-
-    fun getTankStatisticsInHistoryView(tankTitle: String, tankAvg: String, tankImageUrl: String, layout: RelativeLayout, context: Context): View {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.tank_info, layout, false)
-        view.tank_title.text = tankTitle
-        view.tank_avg.text = tankAvg
-        Picasso.get().load(tankImageUrl).into(view.tank_image)
-
-        return view
-    }
 }
