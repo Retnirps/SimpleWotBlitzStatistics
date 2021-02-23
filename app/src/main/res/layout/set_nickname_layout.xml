@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nickname_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
         android:hint="@string/your_nickname"
         app:counterEnabled="true"
         app:counterMaxLength="24">
@@ -24,6 +20,23 @@
             android:inputType="text"
             android:maxLength="24" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/server_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/nickname_text_input"
+        android:layout_toEndOf="@+id/serverLabel"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/serverLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/nickname_text_input"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:text="@string/region" />
 
 
 </RelativeLayout>
