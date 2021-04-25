@@ -12,4 +12,8 @@ class TanksStatisticsRepository(private val tanksStatisticsDao: TanksStatisticsD
     suspend fun deleteAllStatistics() {
         tanksStatisticsDao.deleteAllStatistics()
     }
+
+    suspend fun deleteTanksStatistics(tanksStatisticsData: TanksStatisticsData) {
+        tanksStatisticsDao.deleteTanksStatistics(tanksStatisticsData)
+    }
 }

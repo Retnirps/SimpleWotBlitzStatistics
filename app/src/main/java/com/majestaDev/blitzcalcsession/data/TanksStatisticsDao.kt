@@ -1,10 +1,7 @@
 package com.majestaDev.blitzcalcsession.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface TanksStatisticsDao {
@@ -15,5 +12,8 @@ interface TanksStatisticsDao {
     fun getAllTanksStatistics(): LiveData<List<TanksStatisticsData>>
 
     @Query("delete from tanks_statistics_table")
-    fun deleteAllStatistics()
+    suspend fun deleteAllStatistics()
+
+    @Delete
+    suspend fun deleteTanksStatistics(tanksStatisticsData: TanksStatisticsData)
 }

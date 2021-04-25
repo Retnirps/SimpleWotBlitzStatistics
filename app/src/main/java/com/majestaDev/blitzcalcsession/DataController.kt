@@ -3,6 +3,7 @@ package com.majestaDev.blitzcalcsession
 import android.content.Context
 import com.majestaDev.blitzcalcsession.models.Player
 import com.majestaDev.blitzcalcsession.models.TankStatistics
+import com.majestaDev.blitzcalcsession.models.Total
 
 class DataController {
     var player: Player? = null
@@ -109,6 +110,21 @@ class DataController {
         }
 
         return Triple(damageDealtPerSession, winsPerSession, battlesPerSession)
+    }
+
+    private fun getTotalStatistics(): Total {
+        return RequestHandler().getTotal(player!!.accountId)
+    }
+
+    private fun getTotalStatisticsPerSession(totalOnStart: Total, totalOnStop: Total): Triple<Int, Int, Int> {
+        val avgDamagePerSession: Int =
+            (totalOnStop.damageDealt - totalOnStart.damageDealt) / (totalOnStop.battles - totalOnStart.battles)
+        val percentageOfWinsPerSession: Int =
+            (totalOnStop.wins - totalOnStart.wins) / (totalOnStop.battles - totalOnStart.battles)
+        val battlesPerSession: Int =
+            totalOnStop.battles - totalOnStart.battles
+
+        return Triple(avgDamagePerSession, percentageOfWinsPerSession, battlesPerSession)
     }
 
     fun stopSession(): ArrayList<Triple<String, String, String>> {

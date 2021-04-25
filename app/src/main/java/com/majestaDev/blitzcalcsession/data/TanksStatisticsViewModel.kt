@@ -28,4 +28,10 @@ class TanksStatisticsViewModel(application: Application): AndroidViewModel(appli
             repository.deleteAllStatistics()
         }
     }
+
+    fun deleteTanksStatistics(tanksStatisticsData: TanksStatisticsData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTanksStatistics(tanksStatisticsData)
+        }
+    }
 }

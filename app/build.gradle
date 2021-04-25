@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def WOTB_KEY = '"' + wotb_key + '"' ?: '"Define wotb key"';
+
+android.buildTypes.each {
+    it.buildConfigField 'String', 'WOTB_KEY', WOTB_KEY
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion '30.0.1'

@@ -22,12 +22,13 @@ class HistoryFragment: Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.history_fragment_layout, container, false)
 
-        val adapter = HistoryAdapter(requireContext())
+        tanksStatisticsViewModel = ViewModelProvider(this).get(TanksStatisticsViewModel::class.java)
+
+        val adapter = HistoryAdapter(requireContext(), tanksStatisticsViewModel)
         val recyclerView = view.statistics_history
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        tanksStatisticsViewModel = ViewModelProvider(this).get(TanksStatisticsViewModel::class.java)
         tanksStatisticsViewModel.getAllTanksStatistics.observe(viewLifecycleOwner, Observer { statistics ->
             adapter.setData(statistics)
         })

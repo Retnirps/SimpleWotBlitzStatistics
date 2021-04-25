@@ -2,13 +2,7 @@ package com.majestaDev.blitzcalcsession.models
 
 import com.google.gson.JsonElement
 
-class TankStatistics(/*_damageDealt: Int, _wins: Int, _battles: Int, _lastBattleTime: Long, _tankId: Long*/tankStatistics: JsonElement) {
-//    val damageDealt: Int = _damageDealt
-//    val wins: Int = _wins
-//    val battles: Int = _battles
-//    val lastBattleTime: Long = _lastBattleTime
-//    val tankId: Long = _tankId
-
+class TankStatistics(tankStatistics: JsonElement) {
     var damageDealt: Int = tankStatistics.asJsonObject
         .get("all")
         .asJsonObject.get("damage_dealt").asInt
