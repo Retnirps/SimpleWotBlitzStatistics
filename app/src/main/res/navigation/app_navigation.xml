@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.majestaDev.blitzcalcsession.fragment.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_sessionDetailsFragment"
+            app:destination="@id/sessionDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sessionDetailsFragment"
+        android:name="com.majestaDev.blitzcalcsession.fragment.details.SessionDetailsFragment"
+        android:label="fragment_session_details"
+        tools:layout="@layout/fragment_session_details" >
+        <argument
+            android:name="selectedSession"
+            app:argType="com.majestaDev.blitzcalcsession.model.TanksStatisticsModelFinal" />
+    </fragment>
+</navigation>

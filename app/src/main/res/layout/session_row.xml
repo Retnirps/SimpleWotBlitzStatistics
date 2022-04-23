@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:foreground="@drawable/ripple"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/sessionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#646464"
+                android:paddingStart="15dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="3dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/showDetailsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/arrow_right"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionNumberOfBattlesLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/sessionAvgDamageLabel"
+                app:layout_constraintWidth_percent="0.3"
+                app:tint="#646464" />
+
+            <TextView
+                android:id="@+id/sessionAvgDamageLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avg_damage"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintStart_toStartOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/sessionTitle"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/sessionPercentageOfWinsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/of_wins"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/sessionNumberOfBattlesLabel"
+                app:layout_constraintEnd_toStartOf="@+id/showDetailsButton"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sessionAvgDamageLabel" />
+
+            <TextView
+                android:id="@+id/sessionNumberOfBattlesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/battles"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <TextView
+                android:id="@+id/sessionAvgDamageValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionAvgDamageLabel"
+                app:layout_constraintEnd_toStartOf="@+id/showDetailsButton"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/sessionAvgDamageLabel"
+                app:layout_constraintTop_toTopOf="@+id/sessionAvgDamageLabel" />
+
+            <TextView
+                android:id="@+id/sessionNumberOfBattlesValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionNumberOfBattlesLabel"
+                app:layout_constraintEnd_toStartOf="@+id/showDetailsButton"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/sessionNumberOfBattlesLabel"
+                app:layout_constraintTop_toTopOf="@+id/sessionNumberOfBattlesLabel" />
+
+            <TextView
+                android:id="@+id/sessionPercentageOfWinsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintEnd_toStartOf="@+id/showDetailsButton"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/sessionPercentageOfWinsLabel"
+                app:layout_constraintTop_toTopOf="@+id/sessionPercentageOfWinsLabel" />
+
+            <ImageView
+                android:id="@+id/deleteMark"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/delete_button_background"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionTitle"
+                app:layout_constraintEnd_toEndOf="@+id/sessionTitle"
+                app:layout_constraintTop_toTopOf="@+id/sessionTitle"
+                app:srcCompat="@drawable/ic_delete" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.majestaDev.blitzcalcsession.db_model.SessionInfo
+import com.majestaDev.blitzcalcsession.db_model.TankStatistic
 
-@Database(entities = [TanksStatisticsData::class], version = 1, exportSchema = false)
-abstract class TanksStatisticsDatabase: RoomDatabase() {
+@Database(entities = [SessionInfo::class, TankStatistic::class], version = 1, exportSchema = false)
+abstract class TanksStatisticsDatabase : RoomDatabase() {
+
     abstract fun tanksStatisticsDao(): TanksStatisticsDao
 
     companion object {
@@ -18,11 +21,12 @@ abstract class TanksStatisticsDatabase: RoomDatabase() {
             if (tempInstance != null) {
                 return tempInstance
             }
+
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TanksStatisticsDatabase::class.java,
-                    "tanks_statistics_database"
+                    "session_statistics_database"
                 ).build()
                 INSTANCE = instance
                 return instance

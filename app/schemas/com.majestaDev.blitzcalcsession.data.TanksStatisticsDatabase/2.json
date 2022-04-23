@@ -1,0 +1,150 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "96b98f048e7e172c5e6605b0bdbdfb00",
+    "entities": [
+      {
+        "tableName": "session_info",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`infoId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `time` TEXT NOT NULL, `totalAvgDamagePerSession` INTEGER NOT NULL, `totalBattlesPerSession` INTEGER NOT NULL, `totalPercentageOfWinsPerSession` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "infoId",
+            "columnName": "infoId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalSessionStatistic.totalAvgDamagePerSession",
+            "columnName": "totalAvgDamagePerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalSessionStatistic.totalBattlesPerSession",
+            "columnName": "totalBattlesPerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalSessionStatistic.totalPercentageOfWinsPerSession",
+            "columnName": "totalPercentageOfWinsPerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "infoId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "tank_statistic",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`statisticsId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sessionOfId` INTEGER NOT NULL, `avgDamageDealtPerSession` INTEGER NOT NULL, `battlesPerSession` INTEGER NOT NULL, `percentageOfWinsPerSession` INTEGER NOT NULL, `tier` INTEGER NOT NULL, `name` TEXT NOT NULL, `nation` TEXT NOT NULL, `_urlPreview` TEXT NOT NULL, `tierRoman` TEXT NOT NULL, FOREIGN KEY(`sessionOfId`) REFERENCES `session_info`(`infoId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "statisticsId",
+            "columnName": "statisticsId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionOfId",
+            "columnName": "sessionOfId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.avgDamageDealtPerSession",
+            "columnName": "avgDamageDealtPerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.battlesPerSession",
+            "columnName": "battlesPerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.percentageOfWinsPerSession",
+            "columnName": "percentageOfWinsPerSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.tier",
+            "columnName": "tier",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.nation",
+            "columnName": "nation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic._urlPreview",
+            "columnName": "_urlPreview",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistic.tierRoman",
+            "columnName": "tierRoman",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "statisticsId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "session_info",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "sessionOfId"
+            ],
+            "referencedColumns": [
+              "infoId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '96b98f048e7e172c5e6605b0bdbdfb00')"
+    ]
+  }
+}

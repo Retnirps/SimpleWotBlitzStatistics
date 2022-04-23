@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tankStatisticDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardTankStatisticWithDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tankStatisticDate">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/nationPreview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/national_flag"
+                android:scaleType="centerCrop"
+                android:src="@drawable/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/tankPreview"
+                app:layout_constraintEnd_toEndOf="@+id/tankPreview"
+                app:layout_constraintStart_toStartOf="@+id/tankPreview"
+                app:layout_constraintTop_toTopOf="@+id/tankPreview"
+                app:srcCompat="@drawable/transparent" />
+
+            <ImageView
+                android:id="@+id/tankPreview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="#CB000000"
+                android:contentDescription="@string/favourite_tank"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                app:srcCompat="@drawable/transparent" />
+
+            <TextView
+                android:id="@+id/tankTier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="#BDBAAC"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tankPreview"
+                app:layout_constraintTop_toTopOf="@+id/tankPreview" />
+
+            <TextView
+                android:id="@+id/tankName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#646464"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tankPreview"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/avgDamageLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avg_damage"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintStart_toStartOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tankName"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <TextView
+                android:id="@+id/percentageOfWinsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/of_wins"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/tankPreview"
+                app:layout_constraintTop_toBottomOf="@+id/tankName" />
+
+            <TextView
+                android:id="@+id/numberOfBattlesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/battles"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <TextView
+                android:id="@+id/avgDamageValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/avgDamageLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/avgDamageLabel"
+                app:layout_constraintTop_toTopOf="@+id/avgDamageLabel" />
+
+            <TextView
+                android:id="@+id/numberOfBattlesValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/numberOfBattlesLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/numberOfBattlesLabel"
+                app:layout_constraintTop_toTopOf="@+id/numberOfBattlesLabel" />
+
+            <TextView
+                android:id="@+id/percentageOfWinsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/percentageOfWinsLabel"
+                app:layout_constraintTop_toTopOf="@+id/percentageOfWinsLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

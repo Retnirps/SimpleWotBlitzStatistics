@@ -17,9 +17,9 @@
             android:id="@+id/set_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
             android:inputType="text"
-            android:maxLength="24"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_" />
+            android:maxLength="24" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
